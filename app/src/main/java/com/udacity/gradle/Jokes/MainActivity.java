@@ -20,21 +20,5 @@ public class MainActivity extends AppCompatActivity {
     public void tellJoke(View view) {
         JokesProvider jokesProvider = new JokesProvider();
         new EndpointAsyncTask().execute(new Pair<Context, String>(this, jokesProvider.tellMeAJoke()));
-//        JokesProvider jokesProvider = new JokesProvider();
-//        Toast.makeText(this, getString(R.string.flavor), Toast.LENGTH_SHORT).show();
-
-//        Intent intent = new Intent(this, JokesActivity.class);
-//        intent.putExtra("joke", jokesProvider.tellMeAJoke());
-//        startActivity(intent);
-
-
-
-
     }
-
-//    public void tellJoke(View view) {
-//        new EndpointAsyncTask().execute(this);
-//    }
-
-
 }

@@ -49,8 +49,6 @@ android {
         }
     }
 
-
-
 //    com.udacity.gradle.builditbigger
 //    com.udacity.gradle.Jokes
 
@@ -58,6 +56,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     endpointsServer project(path: ':backend', configuration: 'endpoints')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:support-v4:27.1.1'
