@@ -11,13 +11,14 @@ buildscript {
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion '27.0.3'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+    flavorDimensions 'default'
 
     defaultConfig {
         applicationId "com.udacity.gradle.builditbigger"
         minSdkVersion 24
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -31,6 +32,28 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        free {
+            applicationId "com.udacity.gradle.Jokes.free"
+//            versionName "1.0-free"
+            // this boolean can be accessed in java classes by using BuildConfig class
+            // and now you can identify if your app is the paid version or not
+//            buildConfigField "boolean", "PAID_VERSION", "false"
+        }
+
+        paid {
+            applicationId "com.udacity.gradle.Jokes.paid"
+//            versionName "1.0-paid"
+//            buildConfigField "boolean", "PAID_VERSION", "true"
+        }
+    }
+
+
+
+//    com.udacity.gradle.builditbigger
+//    com.udacity.gradle.Jokes
+
 }
 
 dependencies {
@@ -40,10 +63,10 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:support-media-compat:27.1.1'
     implementation 'com.android.support:customtabs:27.1.1'
-    implementation 'com.google.android.gms:play-services-ads:15.0.1'
+    implementation 'com.google.android.gms:play-services-ads:17.0.0'
     implementation 'com.google.api-client:google-api-client:1.23.0'
     implementation 'com.google.http-client:google-http-client-android:1.23.0'
-    implementation 'com.google.code.findbugs:jsr305:3.0.1'
+    implementation 'com.google.code.findbugs:jsr305:3.0.2'
 
     androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
