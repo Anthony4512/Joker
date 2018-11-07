@@ -1,5 +1,7 @@
 package com.udacity.gradle.Jokes;
 
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -14,7 +16,7 @@ import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
 
 import java.io.IOException;
 
-class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
+public class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     private static MyApi myApiService = null;
     private Context context;
 
@@ -51,6 +53,10 @@ class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, String> {
     protected void onPostExecute(String result) {
         Intent intent = new Intent(context, JokesActivity.class);
         intent.putExtra("joke", result);
-        context.startActivity(intent);
+        try {
+            context.startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
