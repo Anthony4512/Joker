@@ -6,13 +6,13 @@ import java.util.Random;
 
 public class JokesProvider {
 
-    private List<String> jokeList;
+    private static List<String> jokeList;
 
     public JokesProvider() {
         setupJokeList();
     }
 
-    private void setupJokeList() {
+    private static void setupJokeList() {
         jokeList = new ArrayList<>();
         jokeList.add("Chuck Norris solved the Travelling Salesman problem in O(1) time. Here's the pseudo-code: Break salesman into N pieces. Kick each piece to a different city.");
         jokeList.add("Chuck Norris doesn't actually write books, the words assemble themselves out of fear.");
@@ -26,7 +26,10 @@ public class JokesProvider {
         jokeList.add("Chuck Norris can do a wheelie on a unicycle.");
     }
 
-    public String tellMeAJoke() {
+    public static String tellMeAJoke() {
+         if(jokeList == null) {
+             setupJokeList();
+         }
         Random random = new Random();
         int randomNumber = random.nextInt(jokeList.size());
         System.out.println(String.valueOf(randomNumber));
