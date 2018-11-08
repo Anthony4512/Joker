@@ -1,11 +1,12 @@
 package com.udacity.gradle.Jokes;
 
 import android.content.ActivityNotFoundException;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v4.util.Pair;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.amirely.elite.androidjokeslibrary.JokesActivity;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -45,18 +46,24 @@ public class EndpointAsyncTask extends AsyncTask<Pair<Context, String>, Void, St
         try {
             return myApiService.sayHi(name).execute().getData();
         } catch (IOException e) {
-            return e.getMessage();
+            Log.d("EndpointAsyncTask", e.getMessage());
+            return "";
         }
     }
 
     @Override
     protected void onPostExecute(String result) {
-        Intent intent = new Intent(context, JokesActivity.class);
-        intent.putExtra("joke", result);
-        try {
-            context.startActivity(intent);
-        } catch (ActivityNotFoundException e) {
-            e.printStackTrace();
+        if(!result.equals("")) {
+            Intent intent = new Intent(context, JokesActivity.class);
+            intent.putExtra("joke", result);
+            try {
+                context.startActivity(intent);
+            } catch (ActivityNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            Toast.makeText(context, "Start Backend App Engine for Jokes", Toast.LENGTH_LONG).show();
         }
     }
 }
